@@ -1,22 +1,22 @@
-import { useState } from 'react'
+// import { useState } from 'react'
 import styles from '../css/chatbot.module.css'
 import { NormalButton } from '../shared/Buttons'
 
 const ChatBot = () => {
 
-    const [isBotTyping, setIsTyping] = useState(false)
-    const [message, setMessage] = useState<Array<{ text: string, isUser: boolean }>>([])
-    const [isChatOpen, setIsChatOpen] = useState(true)
+    // const [isBotTyping, setIsTyping] = useState(false)
+    // const [message, setMessage] = useState<Array<{ text: string, isUser: boolean }>>([])
+    // const [isChatOpen, setIsChatOpen] = useState(true)
 
-    const closChat = () => {
-        setIsChatOpen(false)
-    }
+    // const closChat = () => {
+    //     setIsChatOpen(false)
+    // }
 
     return (
         <div className={`${styles.container}`}>
             <div className={`${styles.chatHeader}`}>
                 <h3>ChatBot</h3>
-                <NormalButton text='✖️' className={`${styles.closeButton}`} onClick={() => closChat()} />
+                <NormalButton text='✖️' className={`${styles.closeButton}`} onClick={() => { }} />
             </div>
             <div className={`${styles.chatBody}`}>
                 <div className={`${styles.message} ${styles.botMessage}`}>

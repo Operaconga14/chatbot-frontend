@@ -3,16 +3,16 @@ import ChatBot from "./components/ChatBot"
 import { NormalButton } from "./shared/Buttons"
 import "axios"
 import { environment } from "./assets/environments/environments"
-import { useState } from "react"
+// import { useState } from "react"
 
 
 function App() {
 
-  const [isChatOpen, setIsChatOpen] = useState(false);
+  // const [isChatOpen, setIsChatOpen] = useState(false);
 
-  const openChat = () => { setIsChatOpen(true) }
+  // const openChat = () => { setIsChatOpen(true) }
 
-  const closeChat = () => setIsChatOpen(false);
+  // const closeChat = () => setIsChatOpen(false);
 
 
   const handleSessionId = async () => {
@@ -20,7 +20,7 @@ function App() {
 
     try {
 
-      await openChat()
+      // await openChat()
 
       const response = await axios.post(`${api_url}/chat`)
 
