@@ -85,14 +85,14 @@ const ChatBot = () => {
                 )}
 
             </div>
-            <div className={`${styles.chatFooter}`}>
+            <div>
                 <div className={`${styles.endConversationContainer}`}>
                     <hr />
                     <NormalButton text='end Conversation' className={`${styles.endConversationButton}`} onClick={() => handleEndConversation()} />
                     <hr />
                 </div>
                 <div className={`${styles.chatInputContainer}`}>
-                    <input ref={inputRef} type="text" className={`${styles.textInput}`} />
+                    <input ref={inputRef} type="text" className={`${styles.textInput}`} placeholder='Type here...' />
                     <NormalButton text='Send' className={`${styles.sendButton}`} onClick={() => handleSubmit()} />
                 </div>
             </div>

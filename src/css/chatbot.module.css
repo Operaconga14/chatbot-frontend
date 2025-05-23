@@ -1,11 +1,10 @@
 .container {
-    /* background-color: blue; */
     width: 100%;
     max-width: 500px;
-    height: 500px;
-    padding: 5px 10px 1px 10px;
-    /* border-radius: 30px; */
+    border-radius: 20px;
+    border: 0.05px solid #00000033;
     font-family: "Trebuchet MS";
+    box-shadow: 5px 2px 5px 5px #0000001f;
 }
 
 .chatHeader {
@@ -14,21 +13,21 @@
     align-items: center;
     background: linear-gradient(90deg, #2a2ae7d0, rgba(149, 44, 235, 0.692));
     color: white;
-    padding: 0px 10px 0px 10px;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    width: 100%;
-    max-width: 288px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    width: 97%;
+    padding-left: 8px;
+    padding-right: 8px;
 }
 
 .chatBody {
     width: 100%;
-    max-width: 286px;
+    max-width: 96%;
     background-color: white;
     height: calc(100vh - 300px - 140px);
     overflow-y: auto;
     overflow-x: hidden;
-    padding: 10px 10px 0px 10px;
+    padding: 10px 10px 10px 10px;
     font-family: Arial, Helvetica, sans-serif;
     border: 0.1px solid #58585844;
     border-top-color: transparent;
@@ -39,7 +38,8 @@
     display: flex;
     justify-content: space-between;
     flex-direction: column-reverse;
-    gap: 15px;
+    gap: 30px;
+    margin-bottom: 10px;
 }
 
 p {
@@ -53,7 +53,6 @@ p {
     width: fit-content;
     height: fit-content;
     max-width: 200px;
-    margin: 10px 0px 10px 0px;
     height: fit-content;
     padding: 8px;
     border-radius: 5px;
@@ -66,28 +65,20 @@ p {
     background-color: #bebebe21;
     width: fit-content;
     max-width: 200px;
-    margin: 10px 0px 10px 0px;
     height: fit-content;
     padding: 8px;
     border-radius: 5px;
     color: #444444;
 }
 
-.chatFooter {
-    border: 0.1px solid #58585844;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
-    border-top-color: transparent;
-}
-
 .chatInputContainer {
     width: 100%;
+    max-width: 96%;
     display: flex;
-    max-width: 293px;
     align-items: center;
     gap: 5px;
     height: 50px;
-    padding: 5px;
+    padding: 0px 10px 4px 10px;
 }
 
 .endConversationContainer {
@@ -115,6 +106,13 @@ p {
     color: #7e7e7e;
 }
 
+.textInput:focus {
+    outline-color: #b700ff48;
+}
+.textInput::placeholder {
+    color: #7e7e7e;
+}
+
 .sendButton {
     background: linear-gradient(90deg, #2626f398, #c839f386);
     color: whitesmoke;
@@ -130,4 +128,18 @@ p {
     background-color: transparent;
     border: none;
     filter: invert(1);
+}
+
+@media screen and (max-width: 320px) {
+    .chatHeader {
+        width: 95%;
+    }
+
+    .chatBody {
+        width: 93%;
+    }
+
+    .chatInputContainer {
+        width: 93%;
+    }
 }
