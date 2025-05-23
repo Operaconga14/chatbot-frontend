@@ -1,0 +1,36 @@
+body {
+    font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+        "Lucida Sans", Arial, sans-serif;
+}
+
+.trigger-button {
+    position: fixed;
+    bottom: 50px;
+    right: 20px;
+}
+
+.chabot-trgger-btn {
+    border-radius: 30px;
+    background: linear-gradient(90deg, #0000ffa1, #9c14f777);
+    border: 0.1px solid darkgrey;
+    padding: 10px;
+    font-size: 25px;
+    align-items: center;
+    justify-content: center;
+}
+
+.chat-container {
+    position: fixed;
+    bottom: 220px;
+    right: 18px;
+    width: 100%;
+    max-width: 308px;
+    box-shadow: 12px 12px 5px 5px #1d1dfa33;
+    background-color: transparent;
+    border: none;
+    z-index: 99999;
+}
+
+.hidden {
+    display: none;
+}

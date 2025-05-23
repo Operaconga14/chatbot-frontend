@@ -1,0 +1,94 @@
+.container {
+    /* background-color: blue; */
+    width: 100%;
+    max-width: 500px;
+    height: 500px;
+    padding: 5px 10px 1px 10px;
+    /* border-radius: 30px; */
+    font-family: "Trebuchet MS";
+}
+
+.chatHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(90deg, #2a2ae7d0, rgba(149, 44, 235, 0.692));
+    color: white;
+    padding: 0px 10px 0px 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    width: 100%;
+    max-width: 288px;
+}
+
+.chatBody {
+    width: 100%;
+    max-width: 288px;
+    background-color: white;
+    height: calc(100vh - 300px - 140px);
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.message {
+    background-color: orange;
+    display: flex;
+    gap: 5px;
+    border: 0.2px solid red;
+    display: flex;
+    margin: 8px 0;
+    max-width: 80%;
+}
+
+.botMessage {
+    justify-content: flex-start;
+}
+
+.userMessage {
+    justify-content: flex-end;
+}
+
+.chatInputContainer {
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    background-color: whitesmoke;
+    display: flex;
+    height: 50px;
+    gap: 5px;
+    justify-content: center;
+    align-items: center;
+    padding: 8px;
+    width: 100%;
+    max-width: 292px;
+}
+
+.textInput {
+    width: 100%;
+    height: 4vh;
+    border-radius: 5px;
+    border: 0.2px solid #7e7e7e6b;
+    padding: 0px 10px 0px 10px;
+    font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+        "Lucida Sans", Arial, sans-serif;
+    color: #818181;
+}
+
+.sendButton {
+    background: linear-gradient(90deg, #2626f398, #c839f386);
+    color: whitesmoke;
+    padding: 5px;
+    border-radius: 5px;
+    border: 0.2px solid whitesmoke;
+    width: 100%;
+    max-width: 60px;
+    height: 4vh;
+}
+
+.closeButton {
+    background-color: transparent;
+    border: none;
+    filter: invert(1);
+}
