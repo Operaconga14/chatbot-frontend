@@ -40,7 +40,7 @@ function App() {
       <div className="trigger-button">
         <NormalButton text="💬" className="chabot-trgger-btn" onClick={() => handleSessionId()} />
       </div>
-      <div className="chat-container hidden">
+      <div className="chat-container">
         <ChatBot />
       </div>
     </>

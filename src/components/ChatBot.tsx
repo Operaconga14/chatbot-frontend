@@ -1,16 +1,65 @@
-// import { useState } from 'react'
+import { useRef, useState } from 'react'
 import styles from '../css/chatbot.module.css'
 import { NormalButton } from '../shared/Buttons'
+import { Post } from '../services/apiService'
 
 const ChatBot = () => {
 
-    // const [isBotTyping, setIsTyping] = useState(false)
-    // const [message, setMessage] = useState<Array<{ text: string, isUser: boolean }>>([])
-    // const [isChatOpen, setIsChatOpen] = useState(true)
+    const [messages, setMessages] = useState<Array<{ text: String, isUser: boolean }>>([])
+    const [isBotTyping, setIsBotTyping] = useState(false)
+    const inputRef = useRef<HTMLInputElement>(null)
 
-    // const closChat = () => {
-    //     setIsChatOpen(false)
-    // }
+    const handleEndConversation = async () => {
+        const result = await Post({
+            endpoint: "chat/end"
+        })
+
+        deleteSessionId()
+        const message = result.message
+        alert(message)
+        setMessages([])
+    }
+
+    const handleSubmit = () => {
+        if (inputRef.current && inputRef.current.value.trim()) {
+            const userMessage = inputRef.current.value
+            setMessages([...messages, { text: userMessage, isUser: true }])
+
+            inputRef.current.focus()
+            setIsBotTyping(true)
+            inputRef.current.value = ''
+            getBotResponse({ message: userMessage })
+
+        }
+    }
+
+    const getBotResponse = async (body: any) => {
+        try {
+
+            const result = await Post({ endpoint: "/chat/conversation", body: body })
+            const botReply = result.bot_response
+            const sessionId = localStorage.getItem("session_id")
+            const newSessionId = result.session_id
+
+            if (sessionId) {
+
+            }
+            storeSessionId(newSessionId)
+
+            setMessages((prevMessages) => [...prevMessages, { text: botReply, isUser: false }])
+            setIsBotTyping(false)
+        } catch (error) {
+            throw error
+        }
+    }
+
+    const storeSessionId = (sessionId: any) => {
+        localStorage.setItem("session_id", sessionId)
+    }
+
+    const deleteSessionId = () => {
+        localStorage.removeItem("session_id")
+    }
 
     return (
         <div className={`${styles.container}`}>
@@ -19,22 +68,35 @@ const ChatBot = () => {
                 <NormalButton text='✖️' className={`${styles.closeButton}`} onClick={() => { }} />
             </div>
             <div className={`${styles.chatBody}`}>
-                <div className={`${styles.message} ${styles.botMessage}`}>
-                    <div className={`${styles.messageContent}`}>
-                        Hi RodBot, how are you today?
+                {messages.map((msg, index) => (
+                    <div key={index} className={`${styles.message}`}>
+                        <div className={msg.isUser ? styles.userMessage : styles.botMessage}>
+                            <p>{msg.text}</p>
+                        </div>
                     </div>
-                </div>
+                ))}
 
-                <div className={`${styles.message} ${styles.userMessage}`}>
-                    <div className={`${styles.messageContent}`}>
-                        Hello! I'm doing great, thanks for asking. How can I help you today?
+                {isBotTyping && (
+                    <div className={`${styles.message}`}>
+                        <div className={styles.botMessage}>
+                            <div className={styles.messageContent}><p>Typing...</p></div>
+                        </div>
                     </div>
+                )}
+
+            </div>
+            <div className={`${styles.chatFooter}`}>
+                <div className={`${styles.endConversationContainer}`}>
+                    <hr />
+                    <NormalButton text='end Conversation' className={`${styles.endConversationButton}`} onClick={() => handleEndConversation()} />
+                    <hr />
+                </div>
+                <div className={`${styles.chatInputContainer}`}>
+                    <input ref={inputRef} type="text" className={`${styles.textInput}`} />
+                    <NormalButton text='Send' className={`${styles.sendButton}`} onClick={() => handleSubmit()} />
                 </div>
             </div>
-            <div className={`${styles.chatInputContainer}`}>
-                <input type="text" className={`${styles.textInput}`} />
-                <NormalButton text='Send' className={`${styles.sendButton}`} />
-            </div>
+
         </div>
     )
 }

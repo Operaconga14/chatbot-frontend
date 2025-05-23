@@ -23,46 +23,85 @@
 
 .chatBody {
     width: 100%;
-    max-width: 288px;
+    max-width: 286px;
     background-color: white;
     height: calc(100vh - 300px - 140px);
     overflow-y: auto;
     overflow-x: hidden;
-    padding-left: 10px;
-    padding-right: 10px;
+    padding: 10px 10px 0px 10px;
     font-family: Arial, Helvetica, sans-serif;
+    border: 0.1px solid #58585844;
+    border-top-color: transparent;
+    border-bottom-color: transparent;
 }
 
 .message {
-    background-color: orange;
     display: flex;
-    gap: 5px;
-    border: 0.2px solid red;
-    display: flex;
-    margin: 8px 0;
-    max-width: 80%;
+    justify-content: space-between;
+    flex-direction: column-reverse;
+    gap: 15px;
+}
+
+p {
+    margin: 0px;
+    padding: 0px;
 }
 
 .botMessage {
-    justify-content: flex-start;
+    background-color: #bebebe21;
+    align-self: flex-start;
+    width: fit-content;
+    height: fit-content;
+    max-width: 200px;
+    margin: 10px 0px 10px 0px;
+    height: fit-content;
+    padding: 8px;
+    border-radius: 5px;
+    color: #444444;
 }
 
 .userMessage {
-    justify-content: flex-end;
+    display: flex;
+    align-self: flex-end;
+    background-color: #bebebe21;
+    width: fit-content;
+    max-width: 200px;
+    margin: 10px 0px 10px 0px;
+    height: fit-content;
+    padding: 8px;
+    border-radius: 5px;
+    color: #444444;
+}
+
+.chatFooter {
+    border: 0.1px solid #58585844;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-top-color: transparent;
 }
 
 .chatInputContainer {
-    border-bottom-left-radius: 15px;
-    border-bottom-right-radius: 15px;
-    background-color: whitesmoke;
-    display: flex;
-    height: 50px;
-    gap: 5px;
-    justify-content: center;
-    align-items: center;
-    padding: 8px;
     width: 100%;
-    max-width: 292px;
+    display: flex;
+    max-width: 293px;
+    align-items: center;
+    gap: 5px;
+    height: 50px;
+    padding: 5px;
+}
+
+.endConversationContainer {
+    display: flex;
+    justify-content: center;
+}
+
+.endConversationButton {
+    font-family: Georgia, "Times New Roman", Times, serif;
+    color: #5858588c;
+    font-size: 12px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
 }
 
 .textInput {
@@ -73,7 +112,7 @@
     padding: 0px 10px 0px 10px;
     font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
         "Lucida Sans", Arial, sans-serif;
-    color: #818181;
+    color: #7e7e7e;
 }
 
 .sendButton {
