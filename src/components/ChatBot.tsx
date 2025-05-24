@@ -10,26 +10,42 @@ const ChatBot = () => {
     const inputRef = useRef<HTMLInputElement>(null)
 
     const handleEndConversation = async () => {
-        const result = await Post({
-            endpoint: "chat/end"
-        })
+        const sessionId = localStorage.getItem("session_id")
 
-        deleteSessionId()
-        const message = result.message
-        alert(message)
-        setMessages([])
+        try {
+            const result = await Post({
+                endpoint: "chat/end",
+                body: { session_id: sessionId }
+            })
+
+            const message = result.message
+            alert(message)
+            setMessages([])
+            deleteSessionId()
+
+        } catch (error: any) {
+            if (error.response?.status === 422) {
+                console.error('Invalid session or missing data.');
+                alert('Could not end conversation: invalid session.');
+            } else {
+                console.error('Unexpected error:', error);
+                alert('Something went wrong. Try again.');
+            }
+        }
+
+
     }
 
     const handleSubmit = () => {
         if (inputRef.current && inputRef.current.value.trim()) {
             const userMessage = inputRef.current.value
-            setMessages([...messages, { text: userMessage, isUser: true }])
+            setMessages(prevMessages => [...prevMessages, { text: userMessage, isUser: true }])
 
             inputRef.current.focus()
             setIsBotTyping(true)
             inputRef.current.value = ''
-            getBotResponse({ message: userMessage })
-
+            const sessionId = localStorage.getItem("session_id")
+            getBotResponse({ message: userMessage, session_id: sessionId })
         }
     }
 
@@ -38,18 +54,18 @@ const ChatBot = () => {
 
             const result = await Post({ endpoint: "/chat/conversation", body: body })
             const botReply = result.bot_response
-            const sessionId = localStorage.getItem("session_id")
             const newSessionId = result.session_id
 
-            if (sessionId) {
-
+            if (newSessionId) {
+                storeSessionId(newSessionId)
             }
-            storeSessionId(newSessionId)
 
             setMessages((prevMessages) => [...prevMessages, { text: botReply, isUser: false }])
-            setIsBotTyping(false)
         } catch (error) {
+            console.error("Error fetching bot response:", error);
             throw error
+        } finally {
+            setIsBotTyping(false)
         }
     }
 
@@ -59,6 +75,7 @@ const ChatBot = () => {
 
     const deleteSessionId = () => {
         localStorage.removeItem("session_id")
+        alert("Session Deleted succefully")
     }
 
     return (
